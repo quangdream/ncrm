@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title" *ngIf="entity.id; else elseBlock">
+        Cập nhật Loại sản phẩm
+    </h4>
+    <ng-template #elseBlock>
+        <h4 class="modal-title" id="modal-title-add">
+            Thêm mới Loại sản phẩm
+        </h4>
+    </ng-template>
+    <button (click)="activeModal.dismiss('Cross click')" aria-describedby="modal-title" aria-label="Close button"
+            class="close"
+            type="button">
+        <span aria-hiDDen="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form name="ca-info" [formGroup]="form">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="inputCode">Mã loại</label>
+            <div class="col-sm-9">
+                <input name="inputCode"
+                       type="text"
+                       formControlName="code"
+                       class="form-control"
+                       id="inputCode"
+                       trim="blur"
+                       placeholder="Mã loại">
+                <sb-validator
+                              [formInput]="form.get('code')"
+                              [touched]="form.get('code').touched">
+                </sb-validator>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="inputName">Tên loại</label>
+            <div class="col-sm-9">
+                <input name="inputName"
+                       type="text"
+                       formControlName="name"
+                       class="form-control"
+                       id="inputName"
+                       trim="blur"
+                       placeholder="Tên loại">
+                <sb-validator
+                        [formInput]="form.get('name')"
+                        [touched]="form.get('name').touched">
+                </sb-validator>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="inputDes">Mô tả</label>
+            <div class="col-sm-9">
+                <input name="inputDes"
+                       type="text"
+                       formControlName="des"
+                       class="form-control"
+                       id="inputDes"
+                       trim="blur"
+                       placeholder="Mô tả">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button (click)="onSubmit()" [disabled]="form.invalid" class="btn btn-info" style="margin-right: 8px" type="button">
+        <i class="far fa-file"></i> Lưu
+    </button>
+    <button (click)="cancel()" class="btn btn-primary" type="button">
+        <i class="far fa-ban"></i> Hủy
+    </button>
+</div>

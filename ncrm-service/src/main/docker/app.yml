@@ -1,0 +1,15 @@
+version: '2'
+services:
+  ncrm-app:
+    image: ncrm
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://ncrm-mysql:3306/ncrm?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    ports:
+      - 8080:8080
+  ncrm-mysql:
+    extends:
+      file: mysql.yml
+      service: ncrm-mysql
