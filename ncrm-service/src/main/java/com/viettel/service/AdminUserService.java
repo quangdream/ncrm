@@ -1,4 +1,4 @@
-package com.viettel.admin.service;
+package com.viettel.service;
 
 import com.viettel.config.Constants;
 import com.viettel.domain.Authority;
@@ -7,9 +7,6 @@ import com.viettel.repository.AuthorityRepository;
 import com.viettel.repository.UserRepository;
 import com.viettel.security.AuthoritiesConstants;
 import com.viettel.security.SecurityUtils;
-import com.viettel.service.EmailAlreadyUsedException;
-import com.viettel.service.InvalidPasswordException;
-import com.viettel.service.UsernameAlreadyUsedException;
 import com.viettel.service.dto.UserDTO;
 
 import io.github.jhipster.security.RandomUtil;

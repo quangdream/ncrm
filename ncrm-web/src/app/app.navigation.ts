@@ -5,10 +5,10 @@ export const NavigationItems = [
         icon: 'far fa-tasks',
         items: [
             {
-                title: 'Loại sản phẩm',
-                tags: 'Loại sản phẩm',
+                title: 'Đối tượng khách hàng',
+                tags: 'Đối tượng khách hàng',
                 icon: 'far fa-tasks',
-                routerLink: '/app/category-management',
+                routerLink: '/app/customer-type',
             }
         ]
     }

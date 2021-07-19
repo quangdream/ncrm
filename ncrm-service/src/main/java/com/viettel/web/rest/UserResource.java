@@ -1,6 +1,6 @@
 package com.viettel.web.rest;
 
-import com.viettel.admin.service.AdminUserService;
+import com.viettel.service.AdminUserService;
 import com.viettel.config.Constants;
 import com.viettel.domain.User;
 import com.viettel.repository.UserRepository;

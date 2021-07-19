@@ -1,0 +1,128 @@
+<div class="panel">
+    <div class="card-body">
+        <div (click)="isCollapsed = !isCollapsed" class="row">
+            <div class="col-sm-12 search-box-header">
+                <span>
+                    <span><i class="far fa-search"></i> Tìm kiếm</span>
+                    <i [hidden]="!isCollapsed" class="far fa-chevron-circle-down pull-right"></i>
+                    <i [hidden]="isCollapsed" class="far fa-chevron-circle-up pull-right"></i>
+                </span>
+            </div>
+        </div>
+        <form [ngbCollapse]="isCollapsed" style="margin-top: 1rem" [formGroup]="searchForm">
+            <div class="form-group row">
+                <label for="code" class="col-sm-1 col-form-label">Mã</label>
+                <div class="col-sm-5">
+                    <input  id="code"
+                            class="form-control"
+                            formControlName="code"
+                            placeholder="Mã đối tượng khách hàng"
+                    />
+                </div>
+                <label for="name" class="col-sm-1 col-form-label">Tên</label>
+                <div class="col-sm-5">
+                    <input  id="name"
+                            class="form-control"
+                            formControlName="name"
+                            placeholder="Tên đối tượng khách hàng"
+                    />
+                </div>
+            </div>
+            <div class="form-group row" style="float: right">
+                <div class="col-md-12">
+                    <button type="button" (click)="doSearch()" class="btn btn-info">
+                        <i class="far fa-search"></i> Tìm kiếm
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="card-body">
+        <ng-template #tooltipTemplate let-anchor>
+            <span>{{anchor.nativeElement.innerText}}</span>
+        </ng-template>
+        <div
+                kendoTooltip
+                showOn="none"
+                [tooltipTemplate]="tooltipTemplate"
+                filter=".k-grid td"
+                (mouseover)="showTooltip($event)">
+            <kendo-grid
+                    [data]="gridView"
+                    [pageable]="pageableConfig"
+                    [pageSize]="state.take"
+                    [skip]="state.skip"
+                    [sort]="state.sort"
+                    [sortable]="false"
+                    [resizable]="true"
+                    (dataStateChange)="dataStateChange($event)"
+                    [selectable]="{mode: 'multiple',checkboxOnly: true}"
+                    [kendoGridSelectBy]="'code'"
+                    [selectedKeys]="selectedItems">
+                <kendo-grid-messages
+                        columnsApply="Xác nhận"
+                        columns="Danh sách cột"
+                        columnsReset="Làm lại"
+                        pagerPage="Số bản ghi trên trang"
+                        pagerOf="của"
+                        pagerItems="bản ghi"
+                        pagerItemsPerPage="bản ghi"
+                        noRecords="Không có dữ liệu">
+                </kendo-grid-messages>
+                <ng-template kendoGridToolbarTemplate>
+                    <span class="grid-header">Danh sách Đối tượng khách hàng</span>
+                    <div style="float: right;">
+                        <button id="addApproval" (click)="add()" class="btn btn-info" type="button">
+                            <i class="far fa-plus"></i>Thêm mới
+                        </button>
+                        <kendo-grid-column-chooser style="float:right;"
+                                                   [allowHideAll]="false"></kendo-grid-column-chooser>
+                    </div>
+                </ng-template>
+                <kendo-grid-column title="STT"
+                                   [headerClass]="{'kendo-header-cell': true}" [width]="60">
+                    <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
+                        <div style="text-align: center">
+                            <span>{{rowIndex + 1}}</span>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="code"
+                                   title="Mã đối tượng KH"
+                                   [headerClass]="{'kendo-header-cell': true}"
+                                   [width]="100">
+                </kendo-grid-column>
+                <kendo-grid-column field="name"
+                                   title="Tên đối tượng KH"
+                                   [headerClass]="{'kendo-header-cell': true}"
+                                   [width]="100">
+                </kendo-grid-column>
+                <kendo-grid-column field="status"
+                                   title="Trạng thái"
+                                   [headerClass]="{'kendo-header-cell': true}"
+                                   [width]="100">
+                </kendo-grid-column>
+                <kendo-grid-column title="Thao tác"
+                                   [headerClass]="{'kendo-header-cell': true}"
+                                   [width]="80">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div style="text-align: center">
+                            <a (click)="editItem($event, dataItem)"
+                               class="mr-2"
+                               href="#" title="Sửa">
+                                <i class="far fa-edit text-info font-weight-bold"></i>
+                            </a>
+                            <a (click)="removeItem($event, dataItem)"
+                               href="#" title="Xóa">
+                                <i class="far fa-trash-alt text-primary font-weight-bold"></i>
+                            </a>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>
+</div>

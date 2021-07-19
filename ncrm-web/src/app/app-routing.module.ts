@@ -13,6 +13,10 @@ const routes: Routes = [
         canActivate: [UserRouteAccessService],
         children: [
             {
+                path: 'dashboard',
+                loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)
+            },
+            {
                 path: 'category-management',
                 loadChildren: () => import('./features/category-management/category-management.module').then(m => m.CategoryManagementModule)
             },
@@ -28,8 +32,12 @@ const routes: Routes = [
                 path: 'info',
                 loadChildren: () => import('./features/info/info.module').then(m => m.InfoModule)
             },
-            {path: '', redirectTo: 'category-management', pathMatch: 'full'},
-            {path: '**', redirectTo: 'category-management', pathMatch: 'full'},
+            {
+                path: 'customer-type',
+                loadChildren: () => import('./features/customer-type/customer-type.module').then(m => m.CustomerTypeModule)
+            },
+            {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+            {path: '**', redirectTo: 'dashboard', pathMatch: 'full'},
         ]
     },
     {

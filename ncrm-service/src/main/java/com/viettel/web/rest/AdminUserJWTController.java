@@ -1,4 +1,4 @@
-package com.viettel.admin.rest;
+package com.viettel.web.rest;
 
 import com.viettel.security.jwt.JWTFilter;
 import com.viettel.security.jwt.TokenProvider;

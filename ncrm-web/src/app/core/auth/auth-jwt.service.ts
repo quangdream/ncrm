@@ -26,7 +26,7 @@ export class AuthServerProvider {
             return jwt;
         }
 
-        return this.http.post(`${API_ENDPOINT_URL}/authenticate`, credentials, {observe: 'response'}).pipe(map(authenticateSuccess.bind(this)));
+        return this.http.post(`${API_ENDPOINT_URL}/admin/authenticate`, credentials, {observe: 'response'}).pipe(map(authenticateSuccess.bind(this)));
     }
 
     storeAuthenticationToken(jwt, rememberMe) {

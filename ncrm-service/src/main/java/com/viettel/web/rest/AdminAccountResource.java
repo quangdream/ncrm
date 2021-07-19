@@ -1,6 +1,6 @@
-package com.viettel.admin.rest;
+package com.viettel.web.rest;
 
-import com.viettel.admin.service.AdminUserService;
+import com.viettel.service.AdminUserService;
 import com.viettel.domain.User;
 import com.viettel.repository.UserRepository;
 import com.viettel.security.SecurityUtils;
@@ -23,7 +23,7 @@ import java.util.Optional;
  * REST controller for managing the current user's account.
  */
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api")
 public class AdminAccountResource {
 
     private static class AccountResourceException extends RuntimeException {
